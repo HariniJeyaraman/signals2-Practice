@@ -33,10 +33,12 @@ void f(){
     cout<<s(3,4)<<"\n";
 }
 
+//What if a signal is being called multiple times, but we only want to receive the signal 5 times ?
 int main(int argc, char *argv[]){
     signal<void(int)> values;
     //disconnecting after 5 times
     //signal will get disconnected even though the signal is being called a 100 times using a foor loop
+    //Passing the connection inside the slot
     values.connect_extended([](const connection& conn, int value){
         static int count = 0;
         if(++count>5){
